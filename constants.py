@@ -1,0 +1,31 @@
+import pygame
+import os
+
+SCREEN_WIDTH = 600
+SCREEN_HEIGHT = 600
+GRID_SIZE = 20
+GRID_WIDTH = SCREEN_WIDTH // GRID_SIZE
+GRID_HEIGHT = SCREEN_HEIGHT // GRID_SIZE
+
+FPS = 10
+SPEED = 5
+
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+GREEN = (0, 255, 0)
+DARK_GREEN = (0, 200, 0)
+RED = (255, 0, 0)
+YELLOW = (255, 255, 0)
+GRAY = (50, 50, 50)
+LIGHT_GRAY = (100, 100, 100)
+
+SNAKE_COLOR = GREEN
+FOOD_COLOR = RED
+BG_COLOR = BLACK
+
+UP = (0, -1)
+DOWN = (0, 1)
+LEFT = (-1, 0)
+RIGHT = (1, 0)
+
+ASSETS_DIR = os.path.join(os.path.dirname(__file__), 'assets')
