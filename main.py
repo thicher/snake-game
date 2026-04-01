@@ -5,6 +5,8 @@ from food import Food
 from score import Score
 from constants import *
 
+MOVE_EVENT = pygame.USEREVENT + 1
+
 class Game:
     def __init__(self):
         pygame.init()
@@ -18,6 +20,10 @@ class Game:
         self.snake = Snake()
         self.food = Food()
         self.score = Score()
+        self.update_move_timer()
+
+    def update_move_timer(self):
+        pygame.time.set_timer(MOVE_EVENT, 1000 // self.score.get_current_speed())
 
     def run(self):
         while self.running:
@@ -50,6 +56,10 @@ class Game:
                 elif not self.paused and not self.game_over:
                     self.snake.handle_key(event.key)
 
+            elif event.type == MOVE_EVENT and not self.paused and not self.game_over:
+                self.update()
+                self.draw()
+
     def update(self):
         if not self.snake.move():
             self.game_over = True
@@ -60,6 +70,7 @@ class Game:
             self.snake.grow()
             self.food.randomize_position()
             self.score.add()
+            self.update_move_timer()
 
             while self.food.position in self.snake.positions:
                 self.food.randomize_position()
